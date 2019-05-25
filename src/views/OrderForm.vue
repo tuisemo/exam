@@ -57,15 +57,28 @@ export default {
       const Reg = {
         totalNum: /^[1-9]{1}[\d]*$/
       }
-      Toast({
-        message: '提示',
-        position: 'bottom',
-        duration: 5000
-      })
+      if (!this.params.userName || !this.params.mobile || !this.params.address) {
+        Toast({
+          message: '请将姓名、手机、地址填写完整',
+          position: 'center',
+          duration: 5000
+        })
+        return false
+      }
+      if (!Reg.totalNum.test(this.params.totalNum)) {
+        Toast({
+          message: '商品数量请输入大于0的正整数',
+          position: 'center',
+          duration: 5000
+        })
+        return false
+      }
+      this.submit()
     },
     submit () {
       const data = {
         ...this.params,
+        orderTime: Date.now(),
         totalMoney: this.totalMoney
       }
       this.$store.commit('SUBMIT_ORDER', data)

@@ -5,7 +5,7 @@
     <div class="detailBar">
       <p>
         <label>时间：</label>
-        <span class="sub">{{data.orderTime}}</span>
+        <span class="sub">{{data.orderTime|moment}}</span>
       </p>
       <p>
         <label>价格：</label>
@@ -21,6 +21,17 @@
 
 <script>
 export default {
+  filters: {
+    moment (val, option) {
+      const date = new Date(val)
+      const year = date.getFullYear()
+      const month = date.getMonth() + 1
+      const dd = date.getDate()
+      const hh = date.getHours()
+      const mm = date.getMinutes()
+      return `${year}-${month}-${dd} ${hh}:${mm}`
+    }
+  },
   props: {
     data: {
       type: Object,

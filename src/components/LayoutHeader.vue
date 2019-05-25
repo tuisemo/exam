@@ -74,8 +74,20 @@ export default {
   right: 0;
   background: rgba(191, 191, 191, 0.6);
   .menuList {
+    &::before{
+      display: block;
+      position: absolute;
+      content: '';
+      width: 10px;
+      height: 10px;
+      right: 10px;
+      top: -5px;
+      background: #fff;
+      transform: rotate(45deg);
+    }
     display: block;
-    position: absolute;
+    position: relative;
+    float: right;
     width: 100px;
     top:10px;
     right: 10px;
