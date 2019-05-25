@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from './views/Home.vue'
+import ProductsList from './views/ProductsList.vue'
 
 Vue.use(Router)
 
@@ -10,16 +10,24 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'home',
-      component: Home
+      name: 'ProductsList',
+      meta: { title: '外卖商品列表' },
+      component: ProductsList
     },
     {
-      path: '/about',
-      name: 'about',
+      path: '/OrderForm/:id',
+      name: 'OrderForm',
+      meta: { title: '外卖配送表单' },
       // route level code-splitting
       // this generates a separate chunk (about.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
+      component: () => import(/* webpackChunkName: "about" */ './views/OrderForm.vue')
+    },
+    {
+      path: '/OrderList',
+      name: 'OrderList',
+      meta: { title: '全部订单' },
+      component: () => import(/* webpackChunkName: "about" */ './views/OrderList.vue')
     }
   ]
 })
