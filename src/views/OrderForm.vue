@@ -15,12 +15,13 @@
     </div>
     <div class="fixedBar">
       <div class="priceBar">￥{{totalMoney}}</div>
-      <div class="submitBar" @click="submit">确认购买</div>
+      <div class="submitBar" @click="validate">确认购买</div>
     </div>
   </div>
 </template>
 
 <script>
+import { Toast } from 'mint-ui'
 import { mapState, mapGetters } from 'vuex'
 export default {
   data () {
@@ -52,6 +53,16 @@ export default {
   },
 
   methods: {
+    validate () {
+      const Reg = {
+        totalNum: /^[1-9]{1}[\d]*$/
+      }
+      Toast({
+        message: '提示',
+        position: 'bottom',
+        duration: 5000
+      })
+    },
     submit () {
       const data = {
         ...this.params,
